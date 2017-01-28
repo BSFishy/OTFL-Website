@@ -1,0 +1,11 @@
+# Idea
+*.ipr
+*.iml
+*.iws
+
+# Netbeans
+nbproject
+
+# Composer
+vendor
+/nbproject/private/
