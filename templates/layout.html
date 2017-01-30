@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>On The Fly Library</title>
+
+        <!-- Latest compiled and minified Tether CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
+        
+        <!-- Latest compiled and minified Tether Javascript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+        
+        <!-- Latest compiled and minified JQuery Javascript -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+        <style>
+            #main-content {
+                overflow: auto;
+                margin-top: 2%
+            }
+
+            #side-bar {
+                background-color: #00ffff;
+            }
+
+            #side-bar-content {
+                margin-top: 5%;
+            }
+            
+            #side-bar-list li {
+                list-style-type: none;
+                font-size: 150%;
+            }
+            
+            #side-bar-list li a {
+                color: black;
+                text-decoration: none;
+            }
+            
+            #title {
+                margin-bottom: 10%;
+            }
+
+            #body-content, html, body {
+                min-height: 100%;
+                height: 100%;
+                max-width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row" id="body-content">
+            <div class="col-4" id="side-bar">
+                <div class="row">
+                    <div class="col-2">&nbsp;</div>
+                    <div class="col-8" id="side-bar-content">
+                        <ul id="side-bar-list">
+                            <li id="title"><h1>On The Fly Library</h1></li>
+                            <li><a href="home">Home</a></li>
+                            <li><a href="releases">Download</a></li>
+                            <li><a href="wiki">Wiki</a></li>
+                            <li><a href="javadoc">Javadoc</a></li>
+                            <li><a href="about">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" id="main-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
