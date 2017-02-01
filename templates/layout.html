@@ -1,13 +1,19 @@
+<!--
+To pass a variable from php to html, in php use this to make the view:
+    $this->view->render($response, **page**, ["variableName"=>"variableValue"]);
+and in HTML, do this:
+    {{ variableName }}
+-->
 <html>
     <head>
         <title>On The Fly Library</title>
 
         <!-- Latest compiled and minified Tether CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
-        
+
         <!-- Latest compiled and minified Tether Javascript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-        
+
         <!-- Latest compiled and minified JQuery Javascript -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
@@ -30,17 +36,17 @@
             #side-bar-content {
                 margin-top: 5%;
             }
-            
+
             #side-bar-list li {
                 list-style-type: none;
                 font-size: 150%;
             }
-            
+
             #side-bar-list li a {
                 color: black;
                 text-decoration: none;
             }
-            
+
             #title {
                 margin-bottom: 10%;
             }
@@ -51,6 +57,9 @@
                 max-width: 100%;
             }
         </style>
+
+        {% block head %}
+        {% endblock %}
     </head>
     <body>
         <div class="row" id="body-content">
@@ -60,11 +69,13 @@
                     <div class="col-8" id="side-bar-content">
                         <ul id="side-bar-list">
                             <li id="title"><h1>On The Fly Library</h1></li>
-                            <li><a href="home">Home</a></li>
-                            <li><a href="releases">Download</a></li>
+                            <li><a href="{{ path_for('page', { 'page': 'home' }) }}">Home</a></li>
+                            <li><a href="{{ path_for('page', { 'page': 'releases' }) }}">Download</a></li>
                             <li><a href="wiki">Wiki</a></li>
                             <li><a href="javadoc">Javadoc</a></li>
-                            <li><a href="about">About</a></li>
+                            <li><a href="{{ path_for('page', { 'page': 'about' }) }}">About</a></li>
+                            {% block sidebar %}
+                            {% endblock %}
                         </ul>
                     </div>
                 </div>

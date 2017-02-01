@@ -1,8 +1,23 @@
 <?php
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// INCLUDE STUFF
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
+
+require 'sessionStart.inc.php';
+require 'database.inc.php';
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// INITIAL CONFIG STUFF
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+$db = new OtflDatabase();
+$db->init();
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -20,11 +35,38 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// PAGE RULE STUFF
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 $app->get('/', function (Request $request, Response $response) {
     return $this->view->render($response, 'home.html');
 });
 
-$app->get("/{page}", function (Request $request, Response $response) {
+//$app->get("/{page}", function (Request $request, Response $response) {
+//    return $this->view->render($response, $request->getAttribute("page") . ".html");
+//})->setName("page");
+
+$app->get('/{page}', function (Request $request, Response $response) {
+    $pages = array(
+        '404',
+        '503',
+        'about',
+        'home',
+        'javadoc',
+        'layout',
+        'login',
+        'releases',
+        'wiki'
+    );
+
+    $page = $request->getAttribute("page");
+    if (!in_array($page, $pages)) {
+        return $response->withStatus(404)->withHeader("Location", "/404");
+    }
+
     return $this->view->render($response, $request->getAttribute("page") . ".html");
 })->setName("page");
 

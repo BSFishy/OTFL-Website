@@ -9,3 +9,7 @@ nbproject
 # Composer
 vendor
 /nbproject/private/
+
+# Other
+otfl.sqlite
+sessions
