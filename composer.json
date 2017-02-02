@@ -3,6 +3,7 @@
         "slim/slim": "^3.7",
         "slim/twig-view": "^2.2",
         "erusev/parsedown": "^1.6",
-        "illuminate/database": "^5.4"
+        "illuminate/database": "^5.4",
+        "dflydev/fig-cookies": "^1.0"
     }
 }

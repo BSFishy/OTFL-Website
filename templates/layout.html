@@ -24,15 +24,30 @@ and in HTML, do this:
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <style>
+            html {
+                margin-left: 33.3333333%;
+            }
+
+            body {
+                padding-left: 1%;
+            }
+
             #main-content {
-                overflow: auto;
-                margin-top: 2%
+                /*                position: absolute;
+                                left: 33.3333333%;*/
+                margin-top: 2%;
             }
 
             #side-bar {
-                background-color: #00ffff;
+                /*background-color: #00ffff;*/
+                background-color: #DEDEDE;
+                border-right: 1px solid #B3B3B3;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                height: 100%;
             }
-            
+
             #side-bar .row {
                 height: 100%;
             }
@@ -48,7 +63,7 @@ and in HTML, do this:
             }
 
             #side-bar-list li a, #side-bar-bottom-links li a {
-                color: black;
+                color: #292b2c;
                 text-decoration: none;
             }
 
@@ -56,14 +71,17 @@ and in HTML, do this:
                 margin-bottom: 10%;
             }
 
-            #body-content, html, body {
+            html, body {
                 min-height: 100%;
                 height: 100%;
+            }
+
+            #body-content, html, body {
                 max-width: 100%;
             }
-            
-            #side-bar-bottom > * {
-/*                display: table-cell;*/
+
+            #side-bar-bottom {
+                /*                display: table-cell;*/
             }
         </style>
 
@@ -86,10 +104,12 @@ and in HTML, do this:
                             {% block sidebar %}
                             {% endblock %}
                         </ul>
-                        
+
                         <div id="side-bar-bottom">
                             <ul id="side-bar-bottom-links">
-                                <li><a href="{{ path_for('page', { 'page': 'login' }) }}">Login</a></li>
+                                <!--                                <li><a href="{{ path_for('page', { 'page': 'login' }) }}">Login</a></li>
+                                                                <li>{{ loggedIn }}</li>-->
+                                {{ sidebar | raw }}
                             </ul>
                         </div>
                     </div>
